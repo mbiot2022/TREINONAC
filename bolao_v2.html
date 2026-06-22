@@ -8,11 +8,19 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, Helvetica, sans-serif; background: #f0f2f5; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 24px 12px 60px; }
   .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 20px rgba(0,0,0,0.10); width: 100%; max-width: 720px; overflow: hidden; }
+
+  /* AVISO TOPO */
+  .aviso-topo { background: #FF4500; color: #fff; text-align: center; padding: 12px 16px; font-size: 14px; font-weight: 900; line-height: 1.5; letter-spacing: 0.3px; }
+  .aviso-topo span { display: block; font-size: 12px; font-weight: 400; margin-top: 3px; opacity: 0.9; }
+
+  /* HEADER */
   .header { background: linear-gradient(135deg, #1a3a8f 0%, #3A5AC8 100%); padding: 20px 24px 16px; }
   .header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
   .header-titulo { font-size: clamp(16px,4vw,22px); font-weight: 900; color: #fff; letter-spacing: 1px; }
   .header-valor { font-size: clamp(16px,4vw,22px); font-weight: 900; color: #FFD600; }
   .header-info { text-align: center; font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+  /* PLACAR */
   .placar-section { background: #f8f9fc; border-bottom: 1px solid #e8eaf0; padding: 16px 24px; }
   .placar-match { display: flex; align-items: center; justify-content: center; gap: 20px; }
   .placar-team { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 80px; }
@@ -24,6 +32,8 @@
   .resultado-banner { display: none; background: #1a7f37; color: #fff; text-align: center; padding: 10px 24px; font-size: 15px; font-weight: 900; }
   .placar-final { font-size: 22px; color: #FFD600; margin: 0 8px; }
   .encerrado-badge { display: none; background: #cc0000; color: #fff; text-align: center; padding: 6px; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+
+  /* ADMIN */
   .admin-toggle { text-align: right; padding: 8px 16px 0; }
   .admin-toggle button { background: none; border: none; font-size: 11px; color: #aaa; cursor: pointer; text-decoration: underline; }
   .admin-panel { display: none; margin: 10px 16px 0; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 14px 16px; }
@@ -33,47 +43,67 @@
   .admin-row label { font-size: 11px; font-weight: 700; color: #888; min-width: 130px; }
   .admin-input { padding: 7px 10px; border: 1.5px solid #ddd; border-radius: 6px; font-size: 13px; width: 130px; text-align: center; outline: none; color: #222; }
   .admin-input:focus { border-color: #3A5AC8; }
-  .admin-input-text { padding: 7px 10px; border: 1.5px solid #ddd; border-radius: 6px; font-size: 13px; width: 160px; outline: none; color: #222; }
+  .admin-input-text { padding: 7px 10px; border: 1.5px solid #ddd; border-radius: 6px; font-size: 13px; width: 180px; outline: none; color: #222; }
   .admin-input-text:focus { border-color: #3A5AC8; }
   .admin-btn { padding: 7px 14px; background: #1a7f37; color: #fff; border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
   .admin-btn:hover { background: #145f2a; }
   .admin-btn-red { background: #cc0000; } .admin-btn-red:hover { background: #990000; }
   .admin-btn-blue { background: #3A5AC8; } .admin-btn-blue:hover { background: #2a46a0; }
+  .admin-btn-orange { background: #FF4500; } .admin-btn-orange:hover { background: #cc3700; }
   .admin-divider { border: none; border-top: 1px solid #f0d080; margin: 8px 0; }
+
+  /* TABELA */
   .sl { font-size: 12px; font-weight: 700; color: #888; padding: 12px 24px 4px; letter-spacing: 1px; }
   table { width: 100%; border-collapse: collapse; }
   thead tr { background: #3A5AC8; }
-  thead th { color: #fff; font-size: 12px; font-weight: 700; padding: 10px 20px; text-align: left; }
+  thead th { color: #fff; font-size: 12px; font-weight: 700; padding: 10px 12px; text-align: left; }
   thead th.cp { text-align: center; }
   thead th.cd { text-align: center; font-size: 10px; }
+  thead th.cpg { text-align: center; font-size: 11px; }
   tbody tr:nth-child(even) { background: #f4f6fb; }
   tbody tr:nth-child(odd) { background: #fff; }
-  tbody td { padding: 10px 20px; font-size: 13px; font-weight: 700; color: #222; }
+  tbody td { padding: 9px 12px; font-size: 13px; font-weight: 700; color: #222; }
   tbody td.cp { text-align: center; font-weight: 400; color: #444; }
   tbody td.cd { text-align: center; font-size: 11px; color: #888; font-weight: 400; }
+  tbody td.cpg { text-align: center; }
   .np { color: #ccc; font-size: 12px; }
   .lr td { text-align: center; padding: 20px; color: #888; font-size: 13px; font-weight: 400; }
   tr.ganhador td { background: #d4f5d4 !important; color: #1a5c1a !important; }
   tr.ganhador td.cp strong { color: #1a5c1a; }
   tr.ganhador td:first-child::after { content: " 🏆"; }
+  .badge-pago { display: inline-block; background: #1a7f37; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+  .badge-pendente { display: inline-block; background: #FF4500; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; cursor: pointer; }
+  .badge-pendente:hover { background: #cc3700; }
+  .badge-pago-clicavel { display: inline-block; background: #1a7f37; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; cursor: pointer; }
+  .badge-pago-clicavel:hover { background: #145f2a; }
+
+  /* AÇÕES */
   .acoes { padding: 12px 24px 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .btn-add { padding: 9px 20px; background: #3A5AC8; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
   .btn-add:hover { background: #2a46a0; }
   .btn-add:disabled { background: #aaa; cursor: not-allowed; }
   .btn-refresh { background: none; border: none; cursor: pointer; color: #3A5AC8; font-size: 12px; font-weight: 700; text-decoration: underline; }
+
+  /* PRÊMIO */
   .premio-box { margin: 8px 24px 12px; border-radius: 8px; overflow: hidden; border: 2px solid #3A5AC8; }
   .premio-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #3A5AC8; color: #fff; font-size: 14px; font-weight: 900; }
   .premio-header span { color: #FFD600; font-size: 17px; }
   .premio-detalhe { display: none; padding: 10px 16px; background: #eafbf0; font-size: 13px; color: #1a5c1a; font-weight: 700; line-height: 1.8; }
+
+  /* PIX */
+  .pix-box { margin: 8px 24px 20px; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 14px 18px; }
+  .pix-title { font-size: 13px; font-weight: 900; color: #b8860b; margin-bottom: 8px; }
+  .pix-text { font-size: 13px; color: #555; line-height: 1.8; }
+  .pix-destaque { font-size: 14px; font-weight: 700; color: #3A5AC8; }
+
+  /* SHARE */
   .share-bar { display: flex; align-items: center; gap: 8px; padding: 6px 24px 14px; flex-wrap: wrap; }
   .share-label { font-size: 11px; color: #aaa; white-space: nowrap; }
   .share-input { flex: 1; min-width: 100px; padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 11px; color: #888; background: #f8f9fc; outline: none; }
   .copy-btn { padding: 6px 14px; background: #FF4500; color: #fff; border: none; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .copy-btn:hover { background: #cc3700; }
-  .pix-box { margin: 0 24px 20px; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 14px 18px; }
-  .pix-title { font-size: 13px; font-weight: 900; color: #b8860b; margin-bottom: 8px; }
-  .pix-text { font-size: 13px; color: #555; line-height: 1.8; }
-  .pix-destaque { font-size: 14px; font-weight: 700; color: #3A5AC8; }
+
+  /* MODAIS */
   .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: center; justify-content: center; }
   .mo.open { display: flex; }
   .md { background: #fff; border-radius: 12px; padding: 28px 24px 20px; width: 320px; max-width: 92vw; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
@@ -87,12 +117,28 @@
   .mbb .ok:disabled { background: #aaa; cursor: not-allowed; }
   .mo-senha { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; align-items: center; justify-content: center; }
   .mo-senha.open { display: flex; }
+
+  /* HISTORICO */
+  .historico-box { margin: 0 24px 20px; border: 1.5px solid #ddd; border-radius: 8px; overflow: hidden; }
+  .historico-title { background: #3A5AC8; color: #fff; font-size: 12px; font-weight: 700; padding: 8px 14px; }
+  .historico-item { padding: 10px 14px; border-bottom: 1px solid #eee; font-size: 12px; color: #555; line-height: 1.6; }
+  .historico-item:last-child { border-bottom: none; }
+  .historico-item strong { color: #222; }
+
   .toast { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 13px; font-weight: 600; z-index: 300; pointer-events: none; white-space: nowrap; }
-  @media (max-width:500px) { thead th, tbody td { padding: 9px 12px; } .placar-flag { font-size: 30px; } }
+  @media (max-width:500px) { thead th, tbody td { padding: 8px 8px; font-size: 12px; } .placar-flag { font-size: 30px; } }
 </style>
 </head>
 <body>
 <div class="card">
+
+  <!-- AVISO TOPO -->
+  <div class="aviso-topo">
+    ⚠️ ATENÇÃO PARTICIPANTES!
+    <span>Favor efetuarem o pagamento via PIX para podermos premiar os ganhadores. Muito obrigado! 🙏</span>
+  </div>
+
+  <!-- HEADER -->
   <div class="header">
     <div class="header-top">
       <div class="header-titulo">BOLÃO DO NAC</div>
@@ -100,7 +146,10 @@
     </div>
     <div class="header-info">Copa do Mundo FIFA 2026™ · Fase de grupos · Grupo C</div>
   </div>
+
   <div class="encerrado-badge" id="encerrado-badge">🔒 BOLÃO ENCERRADO — não é mais possível adicionar palpites</div>
+
+  <!-- PLACAR -->
   <div class="placar-section">
     <div class="placar-match">
       <div class="placar-team"><span class="placar-flag">🇧🇷</span><span class="placar-nome">Brasil</span></div>
@@ -111,7 +160,10 @@
       <div class="placar-team"><span class="placar-flag">🇭🇹</span><span class="placar-nome">Haiti</span></div>
     </div>
   </div>
+
   <div class="resultado-banner" id="resultado-banner"></div>
+
+  <!-- ADMIN -->
   <div class="admin-toggle"><button onclick="toggleAdminSenha()">⚙️ administrador</button></div>
   <div class="admin-panel" id="admin-panel">
     <div class="admin-title">⚙️ PAINEL DO ADMINISTRADOR</div>
@@ -122,14 +174,18 @@
       <button class="admin-btn admin-btn-red" onclick="limparResultado()">✕ Limpar</button>
     </div>
     <div class="admin-row">
-      <label>Data/Horário do jogo:</label>
+      <label>Data/Horário:</label>
       <input class="admin-input-text" type="text" id="adm-data" placeholder="Ex: 19/06/2026 · 21:30h" />
       <button class="admin-btn admin-btn-blue" onclick="salvarConfig('data_jogo')">✔ Salvar</button>
     </div>
     <div class="admin-row">
       <label>Palpites:</label>
-      <button class="admin-btn admin-btn-red" onclick="encerrarBolao()">🔒 Encerrar bolão</button>
+      <button class="admin-btn admin-btn-red" onclick="encerrarBolao()">🔒 Encerrar</button>
       <button class="admin-btn admin-btn-blue" onclick="reabrirBolao()">🔓 Reabrir</button>
+    </div>
+    <div class="admin-row">
+      <label>Novo bolão:</label>
+      <button class="admin-btn admin-btn-orange" onclick="limparBolao()">📦 Arquivar e limpar</button>
     </div>
     <hr class="admin-divider">
     <div class="admin-row">
@@ -138,6 +194,8 @@
       <button class="admin-btn admin-btn-blue" onclick="salvarNovaSenha()">Salvar senha</button>
     </div>
   </div>
+
+  <!-- PALPITES -->
   <div class="sl">PALPITES</div>
   <table>
     <thead>
@@ -145,27 +203,35 @@
         <th>Nome</th>
         <th class="cp" id="col-header">PALPITE</th>
         <th class="cd">Horário</th>
+        <th class="cpg">Pagamento</th>
       </tr>
     </thead>
     <tbody id="bolao-body">
-      <tr class="lr"><td colspan="3">Carregando... ⏳</td></tr>
+      <tr class="lr"><td colspan="4">Carregando... ⏳</td></tr>
     </tbody>
   </table>
+
   <div class="acoes">
     <button class="btn-add" id="btn-add" onclick="openModal()">+ Adicionar palpite</button>
     <button class="btn-refresh" onclick="loadTudo()">↻ Atualizar</button>
   </div>
+
+  <!-- PRÊMIO -->
   <div class="premio-box">
     <div class="premio-header"><span>🏆 PRÊMIO TOTAL</span><span id="premio-total">R$ 0,00</span></div>
     <div class="premio-detalhe" id="premio-detalhe"></div>
   </div>
+
+  <!-- SHARE -->
   <div class="share-bar">
     <span class="share-label">🔗 Compartilhar:</span>
     <input class="share-input" type="text" id="share-input" readonly />
     <button class="copy-btn" onclick="copyLink()">Copiar link</button>
   </div>
+
+  <!-- PIX -->
   <div class="pix-box">
-    <div class="pix-title">💰 COMO FUNCIONA O PAGAMENTO</div>
+    <div class="pix-title">💰 PESSOAL, FAVOR EFETUAR O PAGAMENTO</div>
     <div class="pix-text">
       <strong>1)</strong> Por favor, cada participante enviar um PIX de <strong>R$ 10,00</strong> para a chave <strong>12033505898</strong> (assim evita-se que cada um envie 3 PIX).<br><br>
       <strong>2)</strong> <strong>GANHADORES:</strong> favor enviarem sua <strong>CHAVE PIX</strong> para o WhatsApp <strong>(16) 99704-2101</strong>.<br><br>
@@ -173,6 +239,13 @@
       <span class="pix-destaque">Muito obrigado e parabéns aos ganhadores! 🍀⚽🇧🇷</span>
     </div>
   </div>
+
+  <!-- HISTÓRICO -->
+  <div class="historico-box" id="historico-box" style="display:none">
+    <div class="historico-title">📋 HISTÓRICO DE BOLÕES</div>
+    <div id="historico-lista"></div>
+  </div>
+
 </div>
 
 <!-- MODAL PALPITE -->
@@ -210,113 +283,145 @@ var SB_URL = "https://yhzyruscfxjxpfhsdwfz.supabase.co";
 var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InloenlydXNjZnhqeHBmaHNkd2Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMjc3NzksImV4cCI6MjA5NzcwMzc3OX0.DdgNc6YXlkwjseIBcm_7hV8v9r-ssnTK6mcC4Tpqcmw";
 var STORAGE_SENHA = "bolao_v2_senha";
 var SENHA_PADRAO  = "nac2026";
-
 var rows = [];
-var cfg  = { resultado: "", encerrado: "false", data_jogo: "" };
+var cfg  = { resultado:"", encerrado:"false", data_jogo:"", numero_bolao:"1" };
 var adminAberto = false;
 
 function getSenha() { return localStorage.getItem(STORAGE_SENHA) || SENHA_PADRAO; }
-function norm(s)    { return String(s||"").toUpperCase().replace(/\s*[xX]\s*/g," X ").trim(); }
-function esc(s)     { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function norm(s) { return String(s||"").toUpperCase().replace(/\s*[xX]\s*/g," X ").trim(); }
+function esc(s)  { return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 function sbFetch(path, opts) {
   return fetch(SB_URL + path, Object.assign({
-    headers: { "apikey": SB_KEY, "Authorization": "Bearer " + SB_KEY,
-               "Content-Type": "application/json", "Prefer": "return=representation" }
-  }, opts || {}));
+    headers: { "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json", "Prefer":"return=representation" }
+  }, opts||{}));
 }
 
-// ---- CONFIG (Supabase) ----
+// ---- CONFIG ----
 function loadConfig() {
   return sbFetch("/rest/v1/config?select=chave,valor")
     .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (!Array.isArray(d)) return;
-      d.forEach(function(row){ cfg[row.chave] = row.valor || ""; });
-      aplicarConfig();
-    });
+    .then(function(d){ if(Array.isArray(d)) d.forEach(function(r){ cfg[r.chave]=r.valor||""; }); aplicarConfig(); });
 }
 
 function aplicarConfig() {
-  // data jogo
   document.getElementById("data-jogo").textContent = cfg.data_jogo || "19/06/2026 · 21:30h";
   document.getElementById("adm-data").value = cfg.data_jogo || "";
-  // resultado
   document.getElementById("adm-resultado").value = cfg.resultado || "";
   atualizarBannerResultado();
-  // encerrado
   atualizarEstadoBotao();
 }
 
 function upsertConfig(chave, valor) {
-  return sbFetch("/rest/v1/config?chave=eq." + encodeURIComponent(chave), {
-    method: "PATCH",
-    body: JSON.stringify({ valor: valor })
-  });
+  return sbFetch("/rest/v1/config?chave=eq."+encodeURIComponent(chave), { method:"PATCH", body:JSON.stringify({valor:valor}) });
 }
 
 function salvarConfig(chave) {
-  var val;
-  if (chave === "resultado") val = norm(document.getElementById("adm-resultado").value);
-  if (chave === "data_jogo") val = document.getElementById("adm-data").value.trim();
+  var val = chave==="resultado" ? norm(document.getElementById("adm-resultado").value) : document.getElementById("adm-data").value.trim();
   if (!val) { showToast("Campo vazio!"); return; }
-  upsertConfig(chave, val).then(function(){
-    cfg[chave] = val;
-    aplicarConfig();
-    render();
-    showToast("Salvo com sucesso! ✅");
-  }).catch(function(){ showToast("Erro ao salvar."); });
+  upsertConfig(chave, val).then(function(){ cfg[chave]=val; aplicarConfig(); render(); showToast("Salvo! ✅"); }).catch(function(){ showToast("Erro ao salvar."); });
 }
 
 function limparResultado() {
-  upsertConfig("resultado", "").then(function(){
-    cfg.resultado = "";
-    document.getElementById("adm-resultado").value = "";
-    atualizarBannerResultado();
-    render();
-    showToast("Resultado removido.");
-  });
-}
-
-function encerrarBolao() {
-  if (!confirm("Encerrar o bolão? Ninguém mais poderá adicionar palpites.")) return;
-  upsertConfig("encerrado", "true").then(function(){
-    cfg.encerrado = "true";
-    atualizarEstadoBotao();
-    showToast("Bolão encerrado! 🔒");
-  });
-}
-
-function reabrirBolao() {
-  upsertConfig("encerrado", "false").then(function(){
-    cfg.encerrado = "false";
-    atualizarEstadoBotao();
-    showToast("Bolão reaberto! 🔓");
-  });
+  upsertConfig("resultado","").then(function(){ cfg.resultado=""; document.getElementById("adm-resultado").value=""; atualizarBannerResultado(); render(); showToast("Resultado removido."); });
 }
 
 function atualizarBannerResultado() {
   var bar = document.getElementById("resultado-banner");
-  var r = cfg.resultado || "";
-  if (r) {
-    var p = r.split(" X ");
-    bar.innerHTML = "⚽ RESULTADO FINAL: 🇧🇷 Brasil <span class='placar-final'>" + esc(p[0]||"?") + " x " + esc(p[1]||"?") + "</span> Haiti 🇭🇹";
+  if (cfg.resultado) {
+    var p = cfg.resultado.split(" X ");
+    bar.innerHTML = "⚽ RESULTADO FINAL: 🇧🇷 Brasil <span class='placar-final'>"+esc(p[0]||"?")+" x "+esc(p[1]||"?")+"</span> Haiti 🇭🇹";
     bar.style.display = "block";
-  } else { bar.style.display = "none"; }
+  } else { bar.style.display="none"; }
 }
 
+function encerrarBolao() {
+  if (!confirm("Encerrar o bolão?")) return;
+  upsertConfig("encerrado","true").then(function(){ cfg.encerrado="true"; atualizarEstadoBotao(); showToast("Bolão encerrado! 🔒"); });
+}
+function reabrirBolao() {
+  upsertConfig("encerrado","false").then(function(){ cfg.encerrado="false"; atualizarEstadoBotao(); showToast("Bolão reaberto! 🔓"); });
+}
 function atualizarEstadoBotao() {
-  var enc = cfg.encerrado === "true";
-  var btn = document.getElementById("btn-add");
+  var enc = cfg.encerrado==="true";
   document.getElementById("encerrado-badge").style.display = enc ? "block" : "none";
+  var btn = document.getElementById("btn-add");
   btn.disabled = enc;
   btn.textContent = enc ? "🔒 Bolão encerrado" : "+ Adicionar palpite";
 }
 
-// ---- SENHA ----
+// ---- ARQUIVAR E LIMPAR ----
+function limparBolao() {
+  if (!confirm("Isso vai ARQUIVAR o bolão atual e apagar todos os palpites para começar um novo. Confirma?")) return;
+  var num = parseInt(cfg.numero_bolao || "1");
+  var ganhadores = rows.filter(function(r){ return norm(r.palpite)===cfg.resultado; }).map(function(r){ return r.nome; }).join(", ");
+  var total = rows.length * 10;
+  var snapshot = {
+    numero: num,
+    titulo: "Bolão #" + num + " — Brasil x Haiti",
+    resultado: cfg.resultado || "—",
+    total_participantes: rows.length,
+    total_premio: total,
+    ganhadores: ganhadores || "Nenhum",
+    dados: rows,
+    criado_em: new Date().toISOString()
+  };
+  sbFetch("/rest/v1/historico", { method:"POST", body: JSON.stringify(snapshot) })
+    .then(function(){
+      // Apagar palpites
+      return sbFetch("/rest/v1/palpites?id=gt.0", { method:"DELETE" });
+    })
+    .then(function(){
+      // Resetar configs
+      var novoNum = String(num + 1);
+      return Promise.all([
+        upsertConfig("resultado",""),
+        upsertConfig("encerrado","false"),
+        upsertConfig("numero_bolao", novoNum)
+      ]);
+    })
+    .then(function(){
+      showToast("Bolão #"+num+" arquivado! Novo bolão iniciado. ✅");
+      loadTudo();
+    })
+    .catch(function(){ showToast("Erro ao arquivar. Tente novamente."); });
+}
+
+// ---- HISTÓRICO ----
+function loadHistorico() {
+  return sbFetch("/rest/v1/historico?select=*&order=numero.asc")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!Array.isArray(d) || d.length===0) { document.getElementById("historico-box").style.display="none"; return; }
+      document.getElementById("historico-box").style.display="block";
+      var h = "";
+      d.forEach(function(item){
+        var data = item.criado_em ? new Date(item.criado_em).toLocaleDateString("pt-BR") : "";
+        h += "<div class='historico-item'>";
+        h += "<strong>📋 Bolão #"+item.numero+"</strong> · "+esc(item.titulo||"")+" · "+data+"<br>";
+        h += "⚽ Resultado: <strong>"+esc(item.resultado||"—")+"</strong> · ";
+        h += "👥 Participantes: <strong>"+item.total_participantes+"</strong> · ";
+        h += "💰 Prêmio: <strong>R$ "+parseFloat(item.total_premio||0).toFixed(2).replace(".",",")+"</strong><br>";
+        h += "🏆 Ganhadores: <strong>"+esc(item.ganhadores||"Nenhum")+"</strong>";
+        h += "</div>";
+      });
+      document.getElementById("historico-lista").innerHTML = h;
+    });
+}
+
+// ---- PAGAMENTO ----
+function togglePagamento(id, pagoAtual) {
+  if (!adminAberto) { showToast("Acesse o painel admin para marcar pagamentos."); return; }
+  var novoPago = !pagoAtual;
+  sbFetch("/rest/v1/palpites?id=eq."+id, { method:"PATCH", body: JSON.stringify({pago: novoPago}) })
+    .then(function(){ loadTudo(); showToast(novoPago ? "Pagamento confirmado! ✅" : "Pagamento removido."); })
+    .catch(function(){ showToast("Erro ao atualizar."); });
+}
+
+// ---- SENHA ADMIN ----
 function salvarNovaSenha() {
   var nova = document.getElementById("adm-nova-senha").value.trim();
-  if (!nova || nova.length < 4) { showToast("Senha deve ter ao menos 4 caracteres."); return; }
+  if (!nova || nova.length<4) { showToast("Senha deve ter ao menos 4 caracteres."); return; }
   localStorage.setItem(STORAGE_SENHA, nova);
   document.getElementById("adm-nova-senha").value = "";
   showToast("Senha atualizada! ✅");
@@ -326,22 +431,14 @@ function toggleAdminSenha() {
   document.getElementById("modal-senha").classList.add("open");
   setTimeout(function(){ document.getElementById("in-senha").focus(); }, 80);
 }
-function fecharModalSenha() {
-  document.getElementById("modal-senha").classList.remove("open");
-  document.getElementById("in-senha").value = "";
-}
-function handleOverlaySenha(e) { if (e.target === document.getElementById("modal-senha")) fecharModalSenha(); }
+function fecharModalSenha() { document.getElementById("modal-senha").classList.remove("open"); document.getElementById("in-senha").value=""; }
+function handleOverlaySenha(e) { if (e.target===document.getElementById("modal-senha")) fecharModalSenha(); }
 function confirmarSenha() {
-  if (document.getElementById("in-senha").value === getSenha()) {
-    fecharModalSenha(); abrirAdmin();
-  } else {
-    showToast("Senha incorreta! ❌");
-    document.getElementById("in-senha").value = "";
-    document.getElementById("in-senha").focus();
-  }
+  if (document.getElementById("in-senha").value===getSenha()) { fecharModalSenha(); abrirAdmin(); }
+  else { showToast("Senha incorreta! ❌"); document.getElementById("in-senha").value=""; document.getElementById("in-senha").focus(); }
 }
-function abrirAdmin()  { adminAberto = true;  document.getElementById("admin-panel").classList.add("open"); }
-function fecharAdmin() { adminAberto = false; document.getElementById("admin-panel").classList.remove("open"); }
+function abrirAdmin()  { adminAberto=true;  document.getElementById("admin-panel").classList.add("open"); }
+function fecharAdmin() { adminAberto=false; document.getElementById("admin-panel").classList.remove("open"); }
 
 // ---- PALPITES ----
 function loadPalpites() {
@@ -351,102 +448,109 @@ function loadPalpites() {
 }
 
 function loadTudo() {
-  document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="3">Carregando... ⏳</td></tr>';
-  Promise.all([loadConfig(), loadPalpites()])
+  document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Carregando... ⏳</td></tr>';
+  Promise.all([loadConfig(), loadPalpites(), loadHistorico()])
     .then(function(){ render(); })
-    .catch(function(){ document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="3">Erro ao carregar. Clique em Atualizar ⚠️</td></tr>'; });
+    .catch(function(){ document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Erro ao carregar. Clique em Atualizar ⚠️</td></tr>'; });
 }
 
 function render() {
-  var filled = rows.filter(function(r){ return r.palpite && r.palpite.trim(); }).length;
-  document.getElementById("col-header").textContent = "PALPITE (" + filled + " de " + rows.length + ")";
+  var filled = rows.filter(function(r){ return r.palpite&&r.palpite.trim(); }).length;
+  var pagos  = rows.filter(function(r){ return r.pago; }).length;
+  document.getElementById("col-header").textContent = "PALPITE ("+filled+" de "+rows.length+")";
   var total = rows.length * 10;
-  document.getElementById("premio-total").textContent = "R$ " + total.toFixed(2).replace(".",",");
+  document.getElementById("premio-total").textContent = "R$ "+total.toFixed(2).replace(".",",");
 
   var resultado = cfg.resultado || "";
   var ganhadores = [];
-  if (resultado) rows.forEach(function(r){ if (norm(r.palpite) === resultado) ganhadores.push(r.nome); });
+  if (resultado) rows.forEach(function(r){ if(norm(r.palpite)===resultado) ganhadores.push(r.nome); });
 
   var det = document.getElementById("premio-detalhe");
-  if (resultado && ganhadores.length > 0) {
-    var pc = total / ganhadores.length;
-    var txt = "🏆 Ganhador(es): <strong>" + ganhadores.map(function(n){ return esc((n||"").toUpperCase()); }).join(", ") + "</strong><br>";
-    txt += ganhadores.length > 1
-      ? "💰 Prêmio por ganhador: <strong>R$ " + pc.toFixed(2).replace(".",",") + "</strong> (total ÷ " + ganhadores.length + ")"
-      : "💰 Prêmio: <strong>R$ " + pc.toFixed(2).replace(".",",") + "</strong> — leva tudo! 🎉";
-    det.innerHTML = txt; det.style.display = "block";
-  } else if (resultado && ganhadores.length === 0) {
-    det.innerHTML = "😮 Nenhum participante acertou o placar exato. Verifique quem mais se aproximou!";
-    det.style.display = "block";
-  } else { det.style.display = "none"; }
+  if (resultado && ganhadores.length>0) {
+    var pc = total/ganhadores.length;
+    var txt = "🏆 Ganhador(es): <strong>"+ganhadores.map(function(n){ return esc((n||"").toUpperCase()); }).join(", ")+"</strong><br>";
+    txt += ganhadores.length>1 ? "💰 Prêmio por ganhador: <strong>R$ "+pc.toFixed(2).replace(".",",")+"</strong> (total ÷ "+ganhadores.length+")"
+                               : "💰 Prêmio: <strong>R$ "+pc.toFixed(2).replace(".",",")+"</strong> — leva tudo! 🎉";
+    txt += "<br>✅ Pagamentos confirmados: <strong>"+pagos+" de "+rows.length+"</strong>";
+    det.innerHTML = txt; det.style.display="block";
+  } else if (resultado && ganhadores.length===0) {
+    det.innerHTML = "😮 Nenhum participante acertou o placar exato. Verifique quem mais se aproximou!<br>✅ Pagamentos: <strong>"+pagos+" de "+rows.length+"</strong>";
+    det.style.display="block";
+  } else { det.style.display="none"; }
 
   if (!rows.length) {
-    document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="3">Nenhum palpite ainda. Seja o primeiro! 🎯</td></tr>';
+    document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Nenhum palpite ainda. Seja o primeiro! 🎯</td></tr>';
     return;
   }
   var h = "";
   rows.forEach(function(r, i){
     var p = norm(r.palpite);
-    var isG = resultado && p === resultado;
-    var bg = isG ? "" : (i % 2 === 0 ? "#fff" : "#f4f6fb");
+    var isG = resultado && p===resultado;
+    var bg = isG ? "" : (i%2===0 ? "#fff" : "#f4f6fb");
     var hora = r.criado_em ? new Date(r.criado_em).toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}) : "";
-    h += "<tr" + (isG ? " class='ganhador'" : "") + (bg ? " style='background:"+bg+"'" : "") + ">";
-    h += "<td>" + esc((r.nome||"").toUpperCase()) + "</td>";
-    h += "<td class='cp'>" + (r.palpite ? "<strong>" + esc(p) + "</strong>" : "<span class='np'>—</span>") + "</td>";
-    h += "<td class='cd'>" + hora + "</td></tr>";
+    var pago = r.pago === true || r.pago === "true";
+    var badgePag = adminAberto
+      ? (pago ? "<span class='badge-pago-clicavel' onclick='togglePagamento("+r.id+",true)'>✅ PAGO</span>"
+               : "<span class='badge-pendente' onclick='togglePagamento("+r.id+",false)'>⏳ PENDENTE</span>")
+      : (pago ? "<span class='badge-pago'>✅ PAGO</span>"
+               : "<span class='badge-pendente' style='cursor:default'>⏳ PENDENTE</span>");
+    h += "<tr"+(isG?" class='ganhador'":"")+(bg?" style='background:"+bg+"'":"")+">"; 
+    h += "<td>"+esc((r.nome||"").toUpperCase())+"</td>";
+    h += "<td class='cp'>"+(r.palpite?"<strong>"+esc(p)+"</strong>":"<span class='np'>—</span>")+"</td>";
+    h += "<td class='cd'>"+hora+"</td>";
+    h += "<td class='cpg'>"+badgePag+"</td></tr>";
   });
-  for (var e = 0; e < Math.max(0, 10 - rows.length); e++) {
-    var bg2 = (rows.length + e) % 2 === 0 ? "#fff" : "#f4f6fb";
-    h += "<tr style='background:"+bg2+"'><td style='height:36px'></td><td></td><td></td></tr>";
+  for (var e=0; e<Math.max(0,10-rows.length); e++) {
+    var bg2=(rows.length+e)%2===0?"#fff":"#f4f6fb";
+    h+="<tr style='background:"+bg2+"'><td style='height:36px'></td><td></td><td></td><td></td></tr>";
   }
   document.getElementById("bolao-body").innerHTML = h;
 }
 
-// ---- ADICIONAR ----
+// ---- MODAL PALPITE ----
 function openModal() {
-  if (cfg.encerrado === "true") { showToast("Bolão encerrado!"); return; }
-  document.getElementById("in-nome").value = "";
-  document.getElementById("in-palpite").value = "";
-  var b = document.getElementById("okbtn"); b.disabled = false; b.textContent = "Salvar";
+  if (cfg.encerrado==="true") { showToast("Bolão encerrado!"); return; }
+  document.getElementById("in-nome").value=""; document.getElementById("in-palpite").value="";
+  var b=document.getElementById("okbtn"); b.disabled=false; b.textContent="Salvar";
   document.getElementById("modal").classList.add("open");
-  setTimeout(function(){ document.getElementById("in-nome").focus(); }, 80);
+  setTimeout(function(){ document.getElementById("in-nome").focus(); },80);
 }
 function closeModal() { document.getElementById("modal").classList.remove("open"); }
-function handleOverlay(e) { if (e.target === document.getElementById("modal")) closeModal(); }
+function handleOverlay(e) { if(e.target===document.getElementById("modal")) closeModal(); }
 
 function addPalpite() {
-  if (cfg.encerrado === "true") { showToast("Bolão encerrado!"); closeModal(); return; }
-  var nome = document.getElementById("in-nome").value.trim();
-  var palpite = document.getElementById("in-palpite").value.trim();
+  if (cfg.encerrado==="true") { showToast("Bolão encerrado!"); closeModal(); return; }
+  var nome=document.getElementById("in-nome").value.trim();
+  var palpite=document.getElementById("in-palpite").value.trim();
   if (!nome) { document.getElementById("in-nome").focus(); showToast("Digite seu nome!"); return; }
-  var b = document.getElementById("okbtn"); b.disabled = true; b.textContent = "Salvando...";
-  sbFetch("/rest/v1/palpites", { method:"POST", body: JSON.stringify({ nome: nome, palpite: palpite.replace(/\s*[xX]\s*/g," X ").trim() }) })
-    .then(function(r){ if (!r.ok) throw new Error(); closeModal(); showToast("Palpite de " + nome + " salvo! ✅"); loadTudo(); })
-    .catch(function(){ showToast("Erro ao salvar."); b.disabled = false; b.textContent = "Salvar"; });
+  var b=document.getElementById("okbtn"); b.disabled=true; b.textContent="Salvando...";
+  sbFetch("/rest/v1/palpites",{method:"POST",body:JSON.stringify({nome:nome,palpite:palpite.replace(/\s*[xX]\s*/g," X ").trim()})})
+    .then(function(r){ if(!r.ok) throw new Error(); closeModal(); showToast("Palpite de "+nome+" salvo! ✅"); loadTudo(); })
+    .catch(function(){ showToast("Erro ao salvar."); b.disabled=false; b.textContent="Salvar"; });
 }
 
 function copyLink() {
-  var url = window.location.href;
-  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function(){ showToast("Link copiado! 📋"); }); }
-  else { document.getElementById("share-input").select(); document.execCommand("copy"); showToast("Link copiado! 📋"); }
+  var url=window.location.href;
+  if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){showToast("Link copiado! 📋");});}
+  else{document.getElementById("share-input").select();document.execCommand("copy");showToast("Link copiado! 📋");}
 }
 
 function showToast(msg) {
-  var t = document.getElementById("toast"); t.textContent = msg; t.style.display = "block";
-  setTimeout(function(){ t.style.display = "none"; }, 2500);
+  var t=document.getElementById("toast"); t.textContent=msg; t.style.display="block";
+  setTimeout(function(){t.style.display="none";},2500);
 }
 
-document.addEventListener("keydown", function(e){
-  if (e.key === "Escape") { closeModal(); fecharModalSenha(); fecharAdmin(); }
-  if (e.key === "Enter") {
-    if (document.getElementById("modal").classList.contains("open")) addPalpite();
-    if (document.getElementById("modal-senha").classList.contains("open")) confirmarSenha();
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){closeModal();fecharModalSenha();fecharAdmin();}
+  if(e.key==="Enter"){
+    if(document.getElementById("modal").classList.contains("open")) addPalpite();
+    if(document.getElementById("modal-senha").classList.contains("open")) confirmarSenha();
   }
 });
 
-document.getElementById("share-input").value = window.location.href;
+document.getElementById("share-input").value=window.location.href;
 loadTudo();
-setInterval(loadTudo, 30000);
+setInterval(loadTudo,30000);
 </script>
 </body>
 </html>
