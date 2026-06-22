@@ -8,13 +8,13 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: Arial, Helvetica, sans-serif; background: #f5f5f5; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 24px 12px 40px; }
   .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 16px rgba(0,0,0,0.10); width: 100%; max-width: 700px; overflow: hidden; }
+
+  /* HEADER */
   .header { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 24px 6px; flex-wrap: wrap; gap: 4px; }
   .ht { font-size: clamp(18px,4vw,26px); font-weight: 900; color: #FF4500; letter-spacing: 1px; }
   .hc { font-size: clamp(18px,4vw,26px); font-weight: 900; color: #FF4500; text-align: center; flex: 1; }
   .hr { font-size: clamp(18px,4vw,26px); font-weight: 900; color: #FF4500; text-align: right; }
-  .sub { text-align: center; font-size: 15px; color: #FF4500; padding: 0 24px 2px; }
   .pg { text-align: right; font-size: 11px; font-weight: 700; color: #FF4500; letter-spacing: 1px; padding: 0 24px 12px; }
-  .sl { font-size: 13px; font-weight: 700; color: #222; padding: 6px 24px 4px; letter-spacing: 1px; }
   .game-info { text-align: center; font-size: 13px; color: #555; padding: 4px 24px 6px; }
   .game-match { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 10px 24px 14px; border-bottom: 1px solid #eee; }
   .team { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 80px; }
@@ -23,6 +23,22 @@
   .vs { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .vs-x { font-size: 22px; font-weight: 700; color: #888; }
   .vs-sub { font-size: 11px; color: #888; white-space: nowrap; }
+
+  /* RESULTADO */
+  .resultado-section { padding: 12px 24px; border-bottom: 1px solid #eee; }
+  .resultado-label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1px; margin-bottom: 6px; }
+  .resultado-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .resultado-input { padding: 8px 12px; border: 2px solid #3A5AC8; border-radius: 6px; font-size: 15px; font-weight: 700; width: 110px; text-align: center; outline: none; color: #222; }
+  .resultado-input:focus { border-color: #FF4500; }
+  .resultado-btn { padding: 8px 18px; background: #1a7f37; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .resultado-btn:hover { background: #145f2a; }
+  .resultado-clear { padding: 8px 12px; background: none; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; color: #888; cursor: pointer; }
+  .resultado-clear:hover { background: #f5f5f5; }
+  .resultado-bar { background: #1a7f37; color: #fff; text-align: center; padding: 10px 24px; font-size: 15px; font-weight: 900; letter-spacing: 0.5px; }
+  .resultado-bar span { font-size: 20px; color: #FFD600; margin: 0 8px; }
+
+  /* TABELA */
+  .sl { font-size: 13px; font-weight: 700; color: #222; padding: 6px 24px 4px; letter-spacing: 1px; }
   table { width: 100%; border-collapse: collapse; }
   thead tr { background: #3A5AC8; }
   thead th { color: #fff; font-size: 13px; font-weight: 700; padding: 11px 20px; text-align: left; }
@@ -39,21 +55,38 @@
   .db { background: none; border: none; cursor: pointer; color: #bbb; font-size: 16px; padding: 2px 4px; border-radius: 4px; }
   .db:hover { color: #e00; }
   .lr td { text-align: center; padding: 20px; color: #888; font-size: 13px; font-weight: 400; }
+
+  /* GANHADOR */
+  tr.ganhador td { background: #d4f5d4 !important; color: #1a5c1a !important; }
+  tr.ganhador td.cp strong { color: #1a5c1a; }
+  tr.ganhador td:first-child::after { content: " 🏆"; }
+
+  /* PRÊMIO */
+  .premio-section { margin: 12px 24px; border-radius: 8px; overflow: hidden; border: 2px solid #3A5AC8; }
+  .premio-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: #3A5AC8; color: #fff; font-size: 14px; font-weight: 900; }
+  .premio-row span { color: #FFD600; font-size: 17px; }
+  .premio-ganhadores { display: none; padding: 10px 16px; background: #eafbf0; border-top: 1px solid #b2e5c0; font-size: 13px; color: #1a5c1a; font-weight: 700; line-height: 1.8; }
+
+  /* BOTÕES */
   .ar { padding: 14px 24px 10px; display: flex; align-items: center; gap: 12px; }
   .ab { padding: 9px 22px; background: #3A5AC8; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
   .ab:hover { background: #2a46a0; }
   .rb { background: none; border: none; cursor: pointer; color: #3A5AC8; font-size: 12px; font-weight: 700; text-decoration: underline; }
+
+  /* SHARE */
   .sb { display: flex; align-items: center; gap: 8px; padding: 8px 24px 18px; flex-wrap: wrap; }
   .sl2 { font-size: 12px; color: #888; white-space: nowrap; }
   .si { flex: 1; min-width: 120px; padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; color: #555; background: #f5f5f5; outline: none; }
   .cb { padding: 7px 16px; background: #FF4500; color: #fff; border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .cb:hover { background: #cc3700; }
-  .premio-bar { margin: 0 24px 12px; background: #3A5AC8; color: #fff; border-radius: 8px; padding: 12px 18px; font-size: 15px; font-weight: 900; text-align: center; letter-spacing: 0.5px; }
-  .premio-bar span { color: #FFD600; font-size: 18px; }
+
+  /* PIX */
   .pix-info { margin: 4px 24px 20px; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 14px 18px; }
   .pix-title { font-size: 13px; font-weight: 900; color: #b8860b; letter-spacing: 0.5px; margin-bottom: 8px; }
   .pix-text { font-size: 13px; color: #555; line-height: 1.7; }
   .pix-good { font-size: 14px; font-weight: 700; color: #3A5AC8; }
+
+  /* MODAL */
   .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: center; justify-content: center; }
   .mo.open { display: flex; }
   .md { background: #fff; border-radius: 12px; padding: 28px 24px 20px; width: 320px; max-width: 90vw; box-shadow: 0 8px 32px rgba(0,0,0,0.18); }
@@ -61,17 +94,20 @@
   .md label { display: block; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 4px; letter-spacing: 0.5px; }
   .md input { width: 100%; padding: 9px 12px; border: 1.5px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 14px; outline: none; color: #222; background: #fff; }
   .md input:focus { border-color: #3A5AC8; }
-  .mb { display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; }
-  .mb .cc { padding: 8px 18px; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #ddd; background: #fff; color: #555; }
-  .mb .ok { padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; background: #3A5AC8; color: #fff; }
-  .mb .ok:hover { background: #2a46a0; }
-  .mb .ok:disabled { background: #aaa; cursor: not-allowed; }
+  .mbb { display: flex; gap: 8px; justify-content: flex-end; margin-top: 4px; }
+  .mbb .cc { padding: 8px 18px; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #ddd; background: #fff; color: #555; }
+  .mbb .ok { padding: 8px 18px; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; background: #3A5AC8; color: #fff; }
+  .mbb .ok:hover { background: #2a46a0; }
+  .mbb .ok:disabled { background: #aaa; cursor: not-allowed; }
+
   .toast { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #222; color: #fff; padding: 10px 24px; border-radius: 8px; font-size: 13px; font-weight: 600; z-index: 300; pointer-events: none; }
   @media (max-width:500px) { .header { flex-direction: column; gap: 2px; } .hc,.hr { text-align: left; flex: none; } thead th, tbody td { padding: 9px 12px; } }
 </style>
 </head>
 <body>
 <div class="card">
+
+  <!-- CABEÇALHO -->
   <div class="header">
     <div class="ht">BOLÃO DO NAC</div>
     <div class="hc">BRASIL X HAITI</div>
@@ -79,20 +115,26 @@
   </div>
   <div class="game-info">Copa do Mundo FIFA 2026™ · 19/06/2026 · 21:30h</div>
   <div class="game-match">
-    <div class="team">
-      <span class="flag">🇧🇷</span>
-      <span class="tname">Brasil</span>
-    </div>
-    <div class="vs">
-      <span class="vs-x">x</span>
-      <span class="vs-sub">Fase de grupos · Grupo C</span>
-    </div>
-    <div class="team">
-      <span class="flag">🇭🇹</span>
-      <span class="tname">Haiti</span>
-    </div>
+    <div class="team"><span class="flag">🇧🇷</span><span class="tname">Brasil</span></div>
+    <div class="vs"><span class="vs-x">x</span><span class="vs-sub">Fase de grupos · Grupo C</span></div>
+    <div class="team"><span class="flag">🇭🇹</span><span class="tname">Haiti</span></div>
   </div>
   <div class="pg">PAGAR DEPOIS</div>
+
+  <!-- RESULTADO DO JOGO -->
+  <div class="resultado-section">
+    <div class="resultado-label">⚽ RESULTADO DO JOGO (apenas administrador)</div>
+    <div class="resultado-form">
+      <input class="resultado-input" type="text" id="resultado-input" placeholder="Ex: 3 x 0" maxlength="10" />
+      <button class="resultado-btn" onclick="salvarResultado()">✔ Salvar resultado</button>
+      <button class="resultado-clear" onclick="limparResultado()">✕ Limpar</button>
+    </div>
+  </div>
+
+  <!-- BANNER RESULTADO (aparece após salvar) -->
+  <div class="resultado-bar" id="resultado-bar" style="display:none"></div>
+
+  <!-- PALPITES -->
   <div class="sl">PALPITES</div>
   <table>
     <thead>
@@ -107,21 +149,29 @@
       <tr class="lr"><td colspan="4">Carregando palpites... ⏳</td></tr>
     </tbody>
   </table>
+
   <div class="ar">
     <button class="ab" onclick="openModal()">+ Adicionar palpite</button>
     <button class="rb" onclick="loadData()">↻ Atualizar</button>
   </div>
 
-  <div class="premio-bar">
-    🏆 PRÊMIO TOTAL: <span id="premio-valor">R$ 0,00</span>
+  <!-- PRÊMIO -->
+  <div class="premio-section">
+    <div class="premio-row">
+      <span>🏆 PRÊMIO TOTAL</span>
+      <span id="premio-total">R$ 0,00</span>
+    </div>
+    <div class="premio-ganhadores" id="premio-ganhadores"></div>
   </div>
 
+  <!-- SHARE -->
   <div class="sb">
     <span class="sl2">🔗 Link para compartilhar:</span>
     <input class="si" type="text" id="share-input" readonly />
     <button class="cb" onclick="copyLink()">Copiar link</button>
   </div>
 
+  <!-- PIX INFO -->
   <div class="pix-info">
     <div class="pix-title">💰 COMO FUNCIONA O PAGAMENTO</div>
     <div class="pix-text">
@@ -134,6 +184,7 @@
   </div>
 </div>
 
+<!-- MODAL PALPITE -->
 <div class="mo" id="modal" onclick="handleOverlayClick(event)">
   <div class="md">
     <h3>Novo palpite</h3>
@@ -141,7 +192,7 @@
     <input type="text" id="in" placeholder="Seu nome" maxlength="30" autocomplete="off" />
     <label for="ip">PALPITE (ex: 3 x 1)</label>
     <input type="text" id="ip" placeholder="Ex: 3 x 1" maxlength="10" />
-    <div class="mb">
+    <div class="mbb">
       <button class="cc" onclick="closeModal()">Cancelar</button>
       <button class="ok" id="okbtn" onclick="addPalpite()">Salvar</button>
     </div>
@@ -151,7 +202,52 @@
 
 <script>
 var API = "https://script.google.com/macros/s/AKfycbwJE4Ohr7gUmIQhOgYgk32P2DfmwbxmNPIhpNdl6v1yi5J-tYNVT8exzUqKoQgWEFoV/exec";
+var RESULTADO_KEY = "bolao_resultado_nac_2026";
 var rows = [];
+var resultadoAtual = "";
+
+function normPlacar(s) {
+  return String(s || "").toUpperCase().replace(/\s*[xX]\s*/g, " X ").trim();
+}
+
+function loadResultado() {
+  var r = localStorage.getItem(RESULTADO_KEY) || "";
+  resultadoAtual = normPlacar(r);
+  document.getElementById("resultado-input").value = resultadoAtual;
+  atualizarBannerResultado();
+}
+
+function salvarResultado() {
+  var v = normPlacar(document.getElementById("resultado-input").value);
+  if (!v) { showToast("Digite o resultado antes de salvar!"); return; }
+  resultadoAtual = v;
+  localStorage.setItem(RESULTADO_KEY, v);
+  atualizarBannerResultado();
+  render();
+  showToast("Resultado salvo: " + v + " ✅");
+}
+
+function limparResultado() {
+  resultadoAtual = "";
+  localStorage.removeItem(RESULTADO_KEY);
+  document.getElementById("resultado-input").value = "";
+  atualizarBannerResultado();
+  render();
+  showToast("Resultado removido.");
+}
+
+function atualizarBannerResultado() {
+  var bar = document.getElementById("resultado-bar");
+  if (resultadoAtual) {
+    var partes = resultadoAtual.split(" X ");
+    var g1 = partes[0] || "?";
+    var g2 = partes[1] || "?";
+    bar.innerHTML = "⚽ RESULTADO FINAL: 🇧🇷 Brasil <span>" + esc(g1) + " x " + esc(g2) + "</span> Haiti 🇭🇹";
+    bar.style.display = "block";
+  } else {
+    bar.style.display = "none";
+  }
+}
 
 function loadData() {
   document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Carregando... ⏳</td></tr>';
@@ -164,15 +260,51 @@ function loadData() {
 function render() {
   var filled = rows.filter(function(r){ return r.palpite && r.palpite.trim(); }).length;
   document.getElementById("col-header").textContent = "PALPITE (" + filled + " de " + rows.length + ")";
+
   var total = rows.length * 10;
-  document.getElementById("premio-valor").textContent = "R$ " + total.toFixed(2).replace(".", ",");
-  if (!rows.length) { document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Nenhum palpite ainda. Seja o primeiro! 🎯</td></tr>'; return; }
+  document.getElementById("premio-total").textContent = "R$ " + total.toFixed(2).replace(".", ",");
+
+  // Calcular ganhadores
+  var ganhadores = [];
+  if (resultadoAtual) {
+    rows.forEach(function(r) {
+      if (normPlacar(r.palpite) === resultadoAtual) ganhadores.push(r.nome);
+    });
+  }
+
+  // Exibir painel de ganhadores/prêmio por cabeça
+  var painelG = document.getElementById("premio-ganhadores");
+  if (resultadoAtual && ganhadores.length > 0) {
+    var porCabeca = total / ganhadores.length;
+    var txt = "🏆 Ganhador(es): <strong>" + ganhadores.map(function(n){ return esc(n.toUpperCase()); }).join(", ") + "</strong><br>";
+    if (ganhadores.length > 1) {
+      txt += "💰 Prêmio por ganhador: <strong>R$ " + porCabeca.toFixed(2).replace(".", ",") + "</strong> (total ÷ " + ganhadores.length + " ganhadores)";
+    } else {
+      txt += "💰 Prêmio: <strong>R$ " + porCabeca.toFixed(2).replace(".", ",") + "</strong> (leva tudo!)";
+    }
+    painelG.innerHTML = txt;
+    painelG.style.display = "block";
+  } else if (resultadoAtual && ganhadores.length === 0) {
+    painelG.innerHTML = "😮 Nenhum participante acertou o placar exato. Verifique quem mais se aproximou!";
+    painelG.style.display = "block";
+  } else {
+    painelG.style.display = "none";
+  }
+
+  if (!rows.length) {
+    document.getElementById("bolao-body").innerHTML = '<tr class="lr"><td colspan="4">Nenhum palpite ainda. Seja o primeiro! 🎯</td></tr>';
+    return;
+  }
+
   var h = "";
   rows.forEach(function(r, i){
-    var bg = i % 2 === 0 ? "#fff" : "#EBEBEB";
-    h += "<tr style='background:" + bg + "'>";
+    var p = normPlacar(r.palpite);
+    var isGanhador = resultadoAtual && p === resultadoAtual;
+    var bg = isGanhador ? "" : (i % 2 === 0 ? "#fff" : "#EBEBEB");
+    var cls = isGanhador ? " class='ganhador'" : "";
+    h += "<tr" + cls + (bg ? " style='background:" + bg + "'" : "") + ">";
     h += "<td>" + esc(r.nome ? r.nome.toUpperCase() : "") + "</td>";
-    h += "<td class='cp'>" + (r.palpite ? "<strong>" + esc(r.palpite.toUpperCase()) + "</strong>" : "<span class='np'>—</span>") + "</td>";
+    h += "<td class='cp'>" + (r.palpite ? "<strong>" + esc(p) + "</strong>" : "<span class='np'>—</span>") + "</td>";
     h += "<td class='cd'>" + esc(r.data || "") + "</td>";
     h += "<td class='cx'><button class='db' onclick='del(" + i + ")'>✕</button></td></tr>";
   });
@@ -199,7 +331,6 @@ function openModal() {
   document.getElementById("modal").classList.add("open");
   setTimeout(function(){ document.getElementById("in").focus(); }, 80);
 }
-
 function closeModal() { document.getElementById("modal").classList.remove("open"); }
 function handleOverlayClick(e) { if (e.target === document.getElementById("modal")) closeModal(); }
 
@@ -230,6 +361,7 @@ document.addEventListener("keydown", function(e){
 });
 
 document.getElementById("share-input").value = window.location.href;
+loadResultado();
 loadData();
 setInterval(loadData, 30000);
 </script>
