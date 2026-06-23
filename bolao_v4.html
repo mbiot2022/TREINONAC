@@ -193,7 +193,7 @@
     <div class="como-body">
       <div class="como-step">
         <div class="como-num">1</div>
-        <div class="como-txt">Preencha o formulário abaixo com seu <strong>WhatsApp, Nome, Setor</strong> e seu <strong>Palpite</strong> e forma de pagamento: chave PIX <em>(apenas o administrador tem acesso)</em> / Dinheiro.</div>
+        <div class="como-txt">Preencha o <strong>CADASTRO</strong> abaixo com seu <strong>WhatsApp, Nome, Setor</strong> e sua <strong>Aposta</strong> e forma de pagamento: chave PIX <em>(apenas o administrador tem acesso)</em> / Dinheiro.</div>
       </div>
       <div class="como-step">
         <div class="como-num">2</div>
@@ -203,7 +203,7 @@
       </div>
       <div class="como-step">
         <div class="como-num">3</div>
-        <div class="como-txt">Aguarde a <strong>confirmação do pagamento</strong> pelo administrador. Após aprovação, seu palpite aparecerá na lista de apostadores e você poderá ganhar o bolão! ✅</div>
+        <div class="como-txt">Aguarde a <strong>confirmação do pagamento</strong> pelo administrador. Após aprovação, sua aposta aparecerá na lista de apostadores e você poderá ganhar o bolão! ✅</div>
       </div>
       <div class="como-step">
         <div class="como-num">4</div>
@@ -214,7 +214,7 @@
 
   <!-- CADASTRO -->
   <div class="cadastro-section" id="cadastro-section">
-    <div class="cadastro-titulo">✍️ FAÇA SEU CADASTRO E PALPITE</div>
+    <div class="cadastro-titulo">✍️ FAÇA SEU CADASTRO E SUA APOSTA</div>
     <div class="cadastro-body">
       <div class="form-row">
         <label class="form-label">📱 WHATSAPP (com DDD, somente números)</label>
@@ -240,19 +240,19 @@
         </select>
       </div>
       <div class="form-row" id="row-chave-pix" style="display:none">
-        <label class="form-label">🔑 SUA CHAVE PIX (para confirmarmos o recebimento)</label>
+        <label class="form-label">🔑 SUA CHAVE PIX (para receber o prêmio. Apenas o administrador tem acesso para efetuar o pagamento)</label>
         <input class="form-input" type="text" id="f-chave-pix" placeholder="CPF, telefone, e-mail ou chave aleatória" maxlength="60" />
       </div>
       <div class="form-row">
-        <label class="form-label">⚽ SEU PALPITE (placar final)</label>
+        <label class="form-label">⚽ SUA APOSTA (placar final)</label>
         <input class="form-input" type="text" id="f-palpite" placeholder="Ex: 0 x 3  (Escócia x Brasil)" maxlength="10" style="text-align:center;font-size:16px;font-weight:700;" />
       </div>
       </div>
-      <button class="btn-cadastrar" id="btn-cadastrar" onclick="cadastrar()">✅ ENVIAR CADASTRO E PALPITE</button>
+      <button class="btn-cadastrar" id="btn-cadastrar" onclick="cadastrar()">✅ ENVIAR CADASTRO E APOSTA</button>
       <div class="aviso-aguardando" id="aviso-aguardando">
         ⏳ Cadastro enviado com sucesso!<br>
         <strong>Aguardando confirmação do pagamento.</strong><br>
-        Seu palpite aparecerá na lista de apostadores após aprovação do administrador.
+        Sua aposta aparecerá na lista de apostadores após aprovação do administrador.
       </div>
     </div>
   </div>
@@ -637,7 +637,7 @@ function cadastrar() {
     document.getElementById("row-chave-pix").style.display="none";
     showToast("Cadastro enviado! Aguarde aprovação. ✅");
   })
-  .catch(function(){ showToast("Erro ao enviar. Tente novamente."); btn.disabled=false; btn.textContent="✅ ENVIAR CADASTRO E PALPITE"; });
+  .catch(function(){ showToast("Erro ao enviar. Tente novamente."); btn.disabled=false; btn.textContent="✅ ENVIAR CADASTRO E APOSTA"; });
 }
 
 // ---- ENCERRAMENTO AUTOMÁTICO ----
