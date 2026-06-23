@@ -198,7 +198,8 @@
       <div class="como-step">
         <div class="como-num">2</div>
         <div class="como-txt">Efetue o pagamento de <strong>R$ 10,00</strong> via PIX para a chave:<br>
-          <span class="chave-pix">mauricio.brigato@gmail.com</span>
+          <span class="chave-pix" id="chave-pix-val">c1615c45-0e6a-4f03-86b7-80c0c57a1dbf</span>
+          <button onclick="copiarChave()" style="margin-left:8px;padding:4px 12px;background:#1a7f37;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;" id="btn-copiar-pix">📋 Copiar</button>
         </div>
       </div>
       <div class="como-step">
@@ -238,7 +239,7 @@
         <label class="form-label">💳 FORMA DE PAGAMENTO</label>
         <select class="form-select" id="f-pagamento" onchange="toggleChavePix()">
           <option value="">— Selecione —</option>
-          <option value="PIX">💸 PIX — chave: mauricio.brigato@gmail.com</option>
+          <option value="PIX">💸 PIX — chave: c1615c45-0e6a-4f03-86b7-80c0c57a1dbf</option>
           <option value="Dinheiro - Maurício">💵 Dinheiro para Maurício</option>
           <option value="Dinheiro - Daniele">💵 Dinheiro para Daniele</option>
         </select>
@@ -367,6 +368,26 @@ var SENHA_PADRAO  = "nac2026";
 var participantes = [];
 var cfg = { resultado:"", encerrado:"false", data_jogo:"", numero_bolao:"1" };
 var adminAberto = false;
+
+function copiarChave() {
+  var chave = document.getElementById("chave-pix-val").textContent;
+  var btn = document.getElementById("btn-copiar-pix");
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(chave).then(function(){
+      btn.textContent = "✅ Copiado!";
+      setTimeout(function(){ btn.textContent = "📋 Copiar"; }, 2000);
+    });
+  } else {
+    var el = document.createElement("textarea");
+    el.value = chave;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    btn.textContent = "✅ Copiado!";
+    setTimeout(function(){ btn.textContent = "📋 Copiar"; }, 2000);
+  }
+}
 
 function getSenha() { return localStorage.getItem(STORAGE_SENHA) || SENHA_PADRAO; }
 function norm(s) { return String(s||"").toUpperCase().replace(/\s*[xX]\s*/g," X ").trim(); }
