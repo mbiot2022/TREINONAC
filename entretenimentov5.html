@@ -329,7 +329,7 @@
   <!-- FILA DE APROVAÇÃO (só admin) -->
   <div class="fila-section" id="fila-section">
     <div class="fila-titulo">
-      <span>⏳ AGUARDANDO APROVAÇÃO</span>
+      <span>⏳ AGUARDANDO APROVAÇÃO — confirme o pagamento e clique em Aprovar</span>
       <span id="fila-count" style="background:#fff;color:#cc0000;padding:2px 8px;border-radius:10px;font-size:12px;">0</span>
     </div>
     <div class="fila-body" id="fila-body"></div>
@@ -606,28 +606,34 @@ function render() {
 
   // Fila de pendentes (só admin)
   var filaSec = document.getElementById("fila-section");
-  if (adminAberto && pendentes.length>0) {
-    filaSec.style.display="block";
-    document.getElementById("fila-count").textContent = pendentes.length;
-    var fh="";
-    pendentes.forEach(function(p){
-      fh+="<div class='fila-item'>";
-      fh+="<div class='fila-info'><strong>"+esc((p.nome||"").toUpperCase())+"</strong> · <span class='setor-badge'>"+esc(p.setor||"—")+"</span><br>";
-      fh+="📱 "+esc(p.whatsapp||"—")+" · Aposta: <strong>"+esc(norm(p.palpite))+"</strong><br>";
-      fh+="💳 "+esc(p.forma_pagamento||"Não informado")+"<br>";
-      if (p.chave_pix) {
-        fh+="🔑 Chave PIX: <strong id='cpix-"+p.id+"'>"+esc(p.chave_pix)+"</strong> ";
-        fh+="<button onclick=\"copiarTexto('cpix-"+p.id+"',this)\" style='padding:2px 8px;background:#1a7f37;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;'>📋 Copiar</button><br>";
-      } else {
-        fh+="🔑 Chave PIX: <em style='color:#aaa'>não informada</em><br>";
-      }
-      fh+="</div>";
-      fh+="<div class='fila-btns'>";
-      fh+="<button class='btn-aprovar' onclick='aprovar("+p.id+")'>✅ Pago — Aprovar</button>";
-      fh+="<button class='btn-rejeitar' onclick='rejeitar("+p.id+")'>❌ Rejeitar</button>";
-      fh+="</div></div>";
-    });
-    document.getElementById("fila-body").innerHTML=fh;
+  if (adminAberto) {
+    if (pendentes.length > 0) {
+      filaSec.style.display="block";
+      document.getElementById("fila-count").textContent = pendentes.length;
+      var fh="";
+      pendentes.forEach(function(p){
+        fh+="<div class='fila-item'>";
+        fh+="<div class='fila-info'><strong>"+esc((p.nome||"").toUpperCase())+"</strong> · <span class='setor-badge'>"+esc(p.setor||"—")+"</span><br>";
+        fh+="📱 "+esc(p.whatsapp||"—")+" · Aposta: <strong>"+esc(norm(p.palpite))+"</strong><br>";
+        fh+="💳 "+esc(p.forma_pagamento||"Não informado")+"<br>";
+        if (p.chave_pix) {
+          fh+="🔑 Chave PIX: <strong id='cpix-"+p.id+"'>"+esc(p.chave_pix)+"</strong> ";
+          fh+="<button onclick=\"copiarTexto('cpix-"+p.id+"',this)\" style='padding:2px 8px;background:#1a7f37;color:#fff;border:none;border-radius:4px;font-size:10px;cursor:pointer;'>📋 Copiar</button><br>";
+        } else {
+          fh+="🔑 Chave PIX: <em style='color:#aaa'>não informada</em><br>";
+        }
+        fh+="</div>";
+        fh+="<div class='fila-btns'>";
+        fh+="<button class='btn-aprovar' onclick='aprovar("+p.id+")'>✅ Pago — Aprovar</button>";
+        fh+="<button class='btn-rejeitar' onclick='rejeitar("+p.id+")'>❌ Rejeitar</button>";
+        fh+="</div></div>";
+      });
+      document.getElementById("fila-body").innerHTML=fh;
+    } else {
+      filaSec.style.display="block";
+      document.getElementById("fila-count").textContent = "0";
+      document.getElementById("fila-body").innerHTML="<div style='padding:12px 16px;font-size:13px;color:#888;'>✅ Nenhuma aposta aguardando aprovação.</div>";
+    }
   } else { filaSec.style.display="none"; }
 
   // Prêmio
@@ -821,7 +827,8 @@ function abrirAdmin(){
   adminAberto=true;
   document.getElementById("admin-panel").classList.add("open");
   document.getElementById("admin-logado-badge").style.display="block";
-  render();
+  // Força recarregar dados e mostrar fila
+  loadTudo();
 }
 function fecharAdmin(){
   adminAberto=false;
