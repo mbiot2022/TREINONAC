@@ -587,15 +587,25 @@ function loadHistorico() {
 // ---- PARTICIPANTES ----
 function loadParticipantes() {
   return sbFetch("/rest/v1/participantes?select=*&order=criado_em.asc")
-    .then(function(r){ return r.json(); })
-    .then(function(d){ participantes = Array.isArray(d)?d:[]; });
+    .then(function(r){
+      if (!r.ok) throw new Error("HTTP " + r.status + " ao buscar participantes");
+      return r.json();
+    })
+    .then(function(d){
+      console.log("Participantes recebidos:", d);
+      participantes = Array.isArray(d)?d:[];
+    })
+    .catch(function(e){ console.error("Erro loadParticipantes:", e); throw e; });
 }
 
 function loadTudo() {
   document.getElementById("bolao-body").innerHTML='<tr class="lr"><td colspan="4">Carregando... ⏳</td></tr>';
   Promise.all([loadConfig(), loadParticipantes(), loadHistorico()])
     .then(function(){ render(); })
-    .catch(function(){ document.getElementById("bolao-body").innerHTML='<tr class="lr"><td colspan="4">Erro ao carregar ⚠️</td></tr>'; });
+    .catch(function(err){
+      console.error("Erro loadTudo:", err);
+      document.getElementById("bolao-body").innerHTML='<tr class="lr"><td colspan="4">Erro: ' + (err&&err.message?err.message:"verifique o console") + ' ⚠️</td></tr>';
+    });
 }
 
 function render() {
@@ -895,7 +905,6 @@ document.addEventListener("keydown",function(e){
   if(e.key==="Enter"&&document.getElementById("modal-senha").classList.contains("open"))confirmarSenha();
 });
 
-document.getElementById("share-input").value=window.location.href;
 loadTudo();
 setInterval(loadTudo,30000);
 </script>
