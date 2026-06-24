@@ -484,7 +484,11 @@ function upsertConfig(chave, valor) {
   return sbFetch("/rest/v1/config?chave=eq."+encodeURIComponent(chave), { method:"PATCH", body:JSON.stringify({valor:valor}) });
 }
 function salvarConfig(chave) {
-  var val = chave==="resultado" ? norm(document.getElementById("adm-resultado").value) : document.getElementById("adm-data").value.trim();
+  var elRes = document.getElementById("adm-resultado");
+  var elData = document.getElementById("adm-data");
+  var val = chave==="resultado"
+    ? (elRes ? norm(elRes.value) : "")
+    : (elData ? elData.value.trim() : "");
   if (!val) { showToast("Campo vazio!"); return; }
   upsertConfig(chave, val).then(function(){
     cfg[chave] = val;
@@ -530,7 +534,8 @@ function reabrirBolao() {
 }
 function atualizarEstadoBotao() {
   var enc = cfg.encerrado==="true";
-  document.getElementById("encerrado-badge").style.display = enc?"block":"none";
+  var badge = document.getElementById("encerrado-badge");
+  if(badge) badge.style.display = enc?"block":"none";
   var sec = document.getElementById("cadastro-section");
   if(sec) sec.style.display = enc?"none":"block";
   var msgEnc = document.getElementById("msg-encerrado");
@@ -788,7 +793,8 @@ function cadastrar() {
 
 // ---- ENCERRAMENTO AUTOMÁTICO ----
 function salvarEncerramento() {
-  var val = document.getElementById("adm-encerramento").value;
+  var el = document.getElementById("adm-encerramento");
+  var val = el ? el.value : "";
   if (!val) { showToast("Selecione data e hora!"); return; }
   upsertConfig("encerramento_auto", val).then(function(){
     cfg.encerramento_auto = val;
@@ -799,8 +805,10 @@ function salvarEncerramento() {
 function limparEncerramento() {
   upsertConfig("encerramento_auto","").then(function(){
     cfg.encerramento_auto="";
-    document.getElementById("adm-encerramento").value="";
-    document.getElementById("countdown-bar").style.display="none";
+    var el = document.getElementById("adm-encerramento");
+    if(el) el.value="";
+    var bar = document.getElementById("countdown-bar");
+    if(bar) bar.style.display="none";
     showToast("Encerramento automático removido.");
   });
 }
@@ -809,26 +817,30 @@ var countdownInterval = null;
 function iniciarCountdown() {
   if (countdownInterval) clearInterval(countdownInterval);
   var enc = cfg.encerramento_auto;
-  if (!enc) { document.getElementById("countdown-bar").style.display="none"; return; }
-  document.getElementById("adm-encerramento").value = enc;
+  var bar = document.getElementById("countdown-bar");
+  if (!enc) { if(bar) bar.style.display="none"; return; }
+  var admEnc = document.getElementById("adm-encerramento");
+  if (admEnc) admEnc.value = enc;
   function tick() {
     var agora = new Date();
     var alvo  = new Date(enc);
     var diff  = alvo - agora;
     if (diff <= 0) {
       clearInterval(countdownInterval);
-      document.getElementById("countdown-bar").style.display="none";
+      if(bar) bar.style.display="none";
       if (cfg.encerrado !== "true") {
         upsertConfig("encerrado","true").then(function(){ cfg.encerrado="true"; atualizarEstadoBotao(); showToast("⏰ Apostas encerradas automaticamente!"); });
       }
       return;
     }
-    document.getElementById("countdown-bar").style.display="block";
-    var h = Math.floor(diff/3600000);
-    var m = Math.floor((diff%3600000)/60000);
-    var s = Math.floor((diff%60000)/1000);
-    document.getElementById("countdown-timer").textContent =
-      String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    if(bar) bar.style.display="block";
+    var ct = document.getElementById("countdown-timer");
+    if(ct) {
+      var h = Math.floor(diff/3600000);
+      var m = Math.floor((diff%3600000)/60000);
+      var s = Math.floor((diff%60000)/1000);
+      ct.textContent = String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    }
   }
   tick();
   countdownInterval = setInterval(tick, 1000);
