@@ -51,7 +51,7 @@
   .btn-cadastrar:disabled { background: #aaa; cursor: not-allowed; }
   .aviso-aguardando { display: none; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 12px 14px; margin-top: 10px; font-size: 13px; color: #b8860b; font-weight: 700; text-align: center; line-height: 1.6; }
   .admin-toggle { text-align: right; padding: 8px 16px 0; }
-  .admin-toggle button { background: none; border: none; font-size: 11px; color: #aaa; cursor: pointer; text-decoration: underline; }
+  .admin-toggle button { background: none; border: none; font-size: 15px; font-weight: 700; color: #3A5AC8; cursor: pointer; text-decoration: underline; }
   .admin-panel { display: none; margin: 10px 16px 0; background: #fff8e1; border: 1.5px solid #FFD600; border-radius: 8px; padding: 14px 16px; }
   .admin-panel.open { display: block; }
   .admin-title { font-size: 12px; font-weight: 900; color: #b8860b; letter-spacing: 0.5px; margin-bottom: 10px; }
@@ -199,7 +199,7 @@
     <div class="admin-row"><label>⏰ Encerrar apostas em:</label><input class="admin-input-text" type="datetime-local" id="adm-encerramento" style="width:200px;" /><button class="admin-btn admin-btn-blue" onclick="salvarEncerramento()">✔ Salvar</button><button class="admin-btn admin-btn-red" onclick="limparEncerramento()">✕</button></div>
     <div class="admin-row"><label>Resultado do jogo:</label><input class="admin-input" type="text" id="adm-resultado" placeholder="Ex: 3 x 0" maxlength="10" /><button class="admin-btn" onclick="salvarConfig('resultado')">✔ Salvar</button><button class="admin-btn admin-btn-red" onclick="limparResultado()">✕ Limpar</button></div>
     <div class="admin-row"><label>Data/Horário:</label><input class="admin-input-text" type="text" id="adm-data" placeholder="Ex: 19/06/2026 · 21:30h" /><button class="admin-btn admin-btn-blue" onclick="salvarConfig('data_jogo')">✔ Salvar</button></div>
-    <div class="admin-row"><label>Apostas:</label><button class="admin-btn admin-btn-red" onclick="encerrarBolao()">🔒 Encerrar</button><button class="admin-btn admin-btn-blue" onclick="reabrirBolao()">🔓 Reabrir</button></div>
+    <div class="admin-row"><label>Apostas:</label><button class="admin-btn admin-btn-red" onclick="encerrarBolao()">🔒 Encerrar</button><button class="admin-btn admin-btn-blue" onclick="reabrirBolao()">🔓 Reabrir</button><button class="admin-btn admin-btn-orange" onclick="apagarDuplicatas()">🗑️ Apagar duplicatas</button></div>
     <div class="admin-row"><label>Novo bolão:</label><button class="admin-btn admin-btn-orange" onclick="arquivarBolao()">📦 Arquivar e limpar</button></div>
     <hr class="admin-divider">
     <div class="admin-row"><label style="font-size:10px;color:#b8860b;">Nova senha admin:</label><input class="admin-input-text" type="password" id="adm-nova-senha" placeholder="Nova senha (min. 4 chars)" /><button class="admin-btn admin-btn-blue" onclick="salvarNovaSenha()">Salvar senha</button></div>
@@ -232,7 +232,7 @@
 <div class="toast" id="toast"></div>
 <script>
 var _sp = atob("TkFPUE9TU09ESVZVTEdBUjIwMjY=");
-var _ak = "entretenimento_v6_acesso";
+var _ak = "entretenimento_v10_acesso";
 function verificarAcesso() {
   var d = document.getElementById("acesso-senha").value;
   if (d === _sp) {
@@ -282,7 +282,7 @@ function verificarAcesso() {
 
 var SB_URL = atob("aHR0cHM6Ly95aHp5cnVzY2Z4anhwZmhzZHdmei5zdXBhYmFzZS5jbw==");
 var SB_KEY = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW5sb2VubHlkWE5qWm5ocWVIQm1hSE5rZDJaNklpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzT0RJeE1qYzNOemtzSW1WNGNDSTZNakE1Tnpjd016YzNPWDAuRGRnTmM2WVhsa3dqc2VJQmNtXzdoVjh2OXItc3NuVEs2bWNDNFRwcWNtdw==");
-var STORAGE_SENHA = "entretenimento_v6_senha";
+var STORAGE_SENHA = "entretenimento_v10_senha";
 var SENHA_PADRAO  = atob("bmFjMjAyNg==");
 var participantes = [];
 var cfg = { resultado:"", encerrado:"false", data_jogo:"24/06/2026 · 19:00h", numero_bolao:"2", encerramento_auto:"" };
@@ -360,7 +360,7 @@ function atualizarEstadoBotao() {
   var enc=cfg.encerrado==="true";
   var b=document.getElementById("encerrado-badge"); if(b) b.style.display=enc?"block":"none";
   var s=document.getElementById("cadastro-section"); if(s) s.style.display=enc?"none":"block";
-  var m=document.getElementById("msg-encerrado"); if(m) m.style.display=enc?"block":"none";
+}
 }
 function arquivarBolao() {
   if (!confirm("Arquivar bolão atual e iniciar novo?")) return;
@@ -421,6 +421,25 @@ function render() {
   } else if (resultado&&ganhadores.length===0&&aprovados.length>0) {
     det.innerHTML="😮 Nenhum acertou o placar exato.<br>✅ Pagamentos: <strong>"+pagos+" de "+aprovados.length+"</strong>"; det.style.display="block";
   } else { det.style.display="none"; }
+
+  // Mensagem parabéns — só quando encerrado E houver ganhadores
+  var enc=cfg.encerrado==="true";
+  var m=document.getElementById("msg-encerrado");
+  if(m) {
+    var elMsg=m.querySelector(".pix-destaque");
+    if(enc && ganhadores.length>0) {
+      var msgTxt = ganhadores.length===1
+        ? "Muito obrigado e parabéns ao ganhador! 🍀⚽🇧🇷"
+        : "Muito obrigado e parabéns aos ganhadores! 🍀⚽🇧🇷";
+      if(elMsg) elMsg.textContent=msgTxt;
+      m.style.display="block";
+    } else if(enc && resultado && ganhadores.length===0) {
+      if(elMsg) elMsg.innerHTML="O valor total <strong>ACUMULOU PARA O PRÓXIMO BOLÃO!</strong> 🏆<br><br>Vocês não precisam pagar para participar do próximo. Permitida apenas 1 aposta por participante.<br><br>Em breve vamos reabrir. Boa sorte e obrigado! 🍀⚽🇧🇷";
+      m.style.display="block";
+    } else {
+      m.style.display="none";
+    }
+  }
   if (!aprovados.length) { document.getElementById("bolao-body").innerHTML='<tr class="lr"><td colspan="4">Nenhuma aposta aprovada ainda. ⏳</td></tr>'; return; }
   var h="";
   aprovados.forEach(function(p,i){
@@ -470,6 +489,9 @@ function cadastrar() {
   if(!nome){ showToast("Digite seu nome!"); document.getElementById("f-nome").focus(); return; }
   if(!forma){ showToast("Selecione a forma de pagamento!"); document.getElementById("f-pagamento").focus(); return; }
   if(!palp){ showToast("Digite sua aposta!"); document.getElementById("f-palpite").focus(); return; }
+  // Verificar aposta duplicada por WhatsApp
+  var duplicado = participantes.find(function(p){ return p.whatsapp === wpp; });
+  if(duplicado){ showToast("⚠️ Este WhatsApp já tem uma aposta cadastrada!"); return; }
   var btn=document.getElementById("btn-cadastrar"); btn.disabled=true; btn.textContent="Enviando...";
   sbFetch("/rest/v1/participantes", { method:"POST", body:JSON.stringify({ whatsapp:wpp, nome:nome, setor:setor, palpite:palp.replace(/\s*[xX]\s*/g," X ").trim(), forma_pagamento:forma, chave_pix:chave||null, pago:false, aprovado:false }) })
   .then(function(r){ if(!r.ok) throw new Error();
@@ -481,6 +503,28 @@ function cadastrar() {
   })
   .catch(function(){ showToast("Erro ao enviar. Tente novamente."); btn.disabled=false; btn.textContent="✅ ENVIAR CADASTRO E APOSTA"; });
 }
+function apagarDuplicatas() {
+  // Agrupar por WhatsApp e encontrar duplicatas
+  var vistos = {};
+  var duplicatas = [];
+  participantes.forEach(function(p) {
+    if (vistos[p.whatsapp]) {
+      duplicatas.push(p);
+    } else {
+      vistos[p.whatsapp] = true;
+    }
+  });
+  if (duplicatas.length === 0) { showToast("Nenhuma duplicata encontrada! ✅"); return; }
+  var nomes = duplicatas.map(function(p){ return p.nome + " ("+p.whatsapp+")"; }).join("\n");
+  if (!confirm("Apagar " + duplicatas.length + " aposta(s) duplicada(s)?\n\n" + nomes)) return;
+  var promises = duplicatas.map(function(p){
+    return fetch(SB_URL+"/rest/v1/participantes?id=eq."+p.id, { method:"DELETE", headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Prefer":"return=minimal"} });
+  });
+  Promise.all(promises)
+    .then(function(){ showToast(duplicatas.length + " duplicata(s) removida(s)! ✅"); setTimeout(function(){ loadTudo(); }, 500); })
+    .catch(function(){ showToast("Erro ao remover duplicatas."); });
+}
+
 function salvarEncerramento() {
   var el=document.getElementById("adm-encerramento"); var val=el?el.value:"";
   if(!val){ showToast("Selecione data e hora!"); return; }
