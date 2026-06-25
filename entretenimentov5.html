@@ -166,7 +166,7 @@
     <div class="como-titulo">📋 <span id="_t2"></span></div>
     <div class="como-body">
       <div class="como-step"><div class="como-num">1</div><div class="como-txt">Preencha o <strong>CADASTRO</strong> abaixo com seu <strong>WhatsApp, Nome, Setor</strong>, sua <strong>Aposta</strong>, forma de pagamento e sua <strong>CHAVE PIX</strong> para receber o prêmio <em>(apenas o administrador tem acesso e não será visível neste site)</em>.</div></div>
-      <div class="como-step"><div class="como-num">2</div><div class="como-txt">Efetue o pagamento de <strong><span id="_t3b"></span></strong> via PIX para a chave:<br><span class="chave-pix" id="chave-pix-val">c1615c45-0e6a-4f03-86b7-80c0c57a1dbf</span> <button onclick="copiarChave()" style="margin-left:8px;padding:4px 12px;background:#1a7f37;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;" id="btn-copiar-pix">📋 Copiar</button></div></div>
+      <div class="como-step" id="step-pix"><div class="como-num">2</div><div class="como-txt">Efetue o pagamento de <strong><span id="_t3b"></span></strong> via PIX para a chave:<br><span class="chave-pix" id="chave-pix-val">c1615c45-0e6a-4f03-86b7-80c0c57a1dbf</span> <button onclick="copiarChave()" style="margin-left:8px;padding:4px 12px;background:#1a7f37;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;" id="btn-copiar-pix">📋 Copiar</button></div></div>
       <div class="como-step"><div class="como-num">3</div><div class="como-txt">Aguarde a <strong>confirmação do pagamento</strong> pelo administrador. Após aprovação, sua aposta aparecerá na lista de apostadores e você poderá ganhar! ✅</div></div>
       <div class="como-step"><div class="como-num">4</div><div class="como-txt">O(s) ganhador(es) receberá(ão) o valor do prêmio através do <strong>PIX</strong>.</div></div>
       <div class="como-step"><div class="como-num">5</div><div class="como-txt">As apostas se encerram <strong>2 horas antes do jogo</strong> automaticamente. ⏰</div></div>
@@ -255,7 +255,7 @@
 <div class="toast" id="toast"></div>
 <script>
 var _sp = atob("TkFPUE9TU09ESVZVTEdBUjIwMjY=");
-var _ak = "entretenimento_v17_acesso";
+var _ak = "entretenimento_v18_acesso";
 function verificarAcesso() {
   var d = document.getElementById("acesso-senha").value;
   if (d === _sp) {
@@ -303,7 +303,7 @@ function verificarAcesso() {
 
 var SB_URL = atob("aHR0cHM6Ly95aHp5cnVzY2Z4anhwZmhzZHdmei5zdXBhYmFzZS5jbw==");
 var SB_KEY = atob("ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKemRYQmhZbUZ6WlNJc0luSmxaaUk2SW5sb2VubHlkWE5qWm5ocWVIQm1hSE5rZDJaNklpd2ljbTlzWlNJNkltRnViMjRpTENKcFlYUWlPakUzT0RJeE1qYzNOemtzSW1WNGNDSTZNakE1Tnpjd016YzNPWDAuRGRnTmM2WVhsa3dqc2VJQmNtXzdoVjh2OXItc3NuVEs2bWNDNFRwcWNtdw==");
-var STORAGE_SENHA = "entretenimento_v17_senha";
+var STORAGE_SENHA = "entretenimento_v18_senha";
 var SENHA_PADRAO  = atob("bmFjMjAyNg==");
 var participantes = [];
 var creditos = [];
@@ -573,6 +573,7 @@ function atualizarEstadoBotao() {
   var enc=cfg.encerrado==="true";
   var b=document.getElementById("encerrado-badge"); if(b) b.style.display=enc?"block":"none";
   var s=document.getElementById("cadastro-section"); if(s) s.style.display=enc?"none":"block";
+  var pix=document.getElementById("step-pix"); if(pix) pix.style.display=enc?"none":"flex";
 }
 function arquivarBolao() {
   if(!confirm("Arquivar bolão atual e iniciar novo?"))return;
