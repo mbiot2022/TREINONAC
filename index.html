@@ -797,7 +797,7 @@ function cadastrar(){
   sbFetch("/rest/v1/participantes",{method:"POST",body:JSON.stringify({
     whatsapp:wpp, nome:nome, setor:setor,
     palpite:palp.replace(/\s*[xX]\s*/g," X ").trim(),
-    forma_participação: usandoCredito ? "Crédito acumulado" : forma,
+    forma_pagamento: usandoCredito ? "Credito acumulado" : forma,
     chave_pix:chave||null,
     pago: usandoCredito,
     aprovado: usandoCredito
